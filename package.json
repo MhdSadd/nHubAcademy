@@ -1,0 +1,50 @@
+{
+  "name": "nacademy",
+  "version": "1.0.0",
+  "description": "nAcademy site",
+  "main": "app.js",
+  "scripts": {
+    "test": "start",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "Nodejs",
+    "Mongodb",
+    "HTML",
+    "CSS",
+    "Bootstrap"
+  ],
+  "engines": {
+    "node": "14.15.2",
+    "npm": "6.14.9"
+  },
+  "author": "nAcademy",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.23.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.5",
+    "date-fns": "^2.16.1",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mailgun-js": "^0.22.0",
+    "method-override": "^3.0.0",
+    "moment": "^2.29.1",
+    "mongoose": "^5.11.7",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "randomstring": "^1.1.5",
+    "validator": "^13.1.17"
+  }
+}

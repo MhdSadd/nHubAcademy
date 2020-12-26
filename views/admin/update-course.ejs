@@ -1,0 +1,157 @@
+<%- include("../partials/admin/adminHeader") %> 
+
+<!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <!-- hambuga -->
+                <%- include("../partials/admin/hamburger") %>
+                <!-- hambuga -->
+                <%- include("../partials/admin/adminBreadCrumb") %> 
+                <!-- /.row -->
+                <!-- ============================================================== -->
+                <!-- Different data widgets -->
+                <!-- ============================================================== -->
+                <!-- .row -->
+                <!-- <div class="row">
+                    <%- include('../partials/messages') %>
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Edit Course</h3>
+                            <form action="/admin/update/<%= update._id %>" enctype="multipart/form-data" method="POST">
+                                <div class="row">
+                                    <div class="form-group col-sm-3">
+                                        <label for="exampleFormControlFile1">course image</label>
+                                        <input type="file" name="courseImage" class="form-control-file" id="exampleFormControlFile1" value="<%=update.courseImage %> ">
+                                    </div>
+                                    <img src="<%=update.courseImage %> " alt="" class="col-sm-3" height="60px">
+                                    <div class="form-group col-sm-6">
+                                        <label for="exampleInputEmail1">Percentage off</label>
+                                        <input type="text" name="promo" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp" placeholder="Enter percentage Off" value="<%=update.promo %> ">
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="exampleInputEmail1">course name</label>
+                                        <input type="text" name="courseName" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp" placeholder="Enter course name" value="<%=update.courseName %> ">
+                                    </div>
+ 
+                                    
+                                    <div class="form-group col-sm-6">
+                                        <label for="exampleInputEmail1">course duration</label>
+                                        <input type="text" name="duration" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                            placeholder="Enter course duration" value="<%=update.duration  %> ">
+                                    </div>
+                                </div>
+ 
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="exampleInputEmail1">Price</label>
+                                        <input type="number" name="price" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                            placeholder="Enter course price" value="<%=update.price %> ">
+                                    </div>
+ 
+                                    
+                                    <div class="form-group col-sm-6">
+                                        <label for="exampleInputEmail1">instructor</label>
+                                        <input type="text" name="instructor" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                            placeholder="Enter course instructor" value="<%=update.instructor %> ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">course description</label>
+                                    <input type="text" name="description" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                            placeholder="Enter course description" value="<%=update.description  %> ">
+                                </div>
+                                <button type="submit" class="btn btn-success">Update Course</button>
+                            </form>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="row">
+                    <%- include('../partials/messages') %>
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Edit Course</h3>
+                            <form action="/admin/update/<%= update._id%>" enctype="multipart/form-data" method="POST">
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-6 col-xs-6" style="border-right: 2px solid tomato;">
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="exampleFormControlFile1">course image</label>
+                                                <input type="file" name="courseImage" multiple="multiple" class="form-control-file" id="exampleFormControlFile1" value="<%=update.courseImage%>">
+                                            </div>
+                                            <img src="<%=update.courseImage%>" alt="" class="col-sm-3" height="60px">
+                                            <div class="form-group col-sm-6">
+                                                <label for="exampleInputEmail1">Percentage off</label>
+                                                <input type="text" name="promo" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp" placeholder="Enter percentage Off" value="<%=update.promo%>">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="exampleInputEmail1">course name</label>
+                                                <input type="text" name="courseName" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                                    placeholder="Enter course name" value="<%=update.courseName%>">
+                                            </div>
+        
+                                            <!--  -->
+                                            <div class="form-group col-sm-6">
+                                            <label for="exampleInputEmail1">course duration</label>
+                                            <input type="text" name="duration" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                                placeholder="Enter course duration" value="<%=update.duration%>">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="exampleInputEmail1">Price</label>
+                                                <input type="number" name="price" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                                    placeholder="Enter course price" value="<%=update.price%>">
+                                            </div>
+        
+                                            <!--  -->
+                                            <div class="form-group col-sm-6">
+                                            <label for="exampleInputEmail1">instructor</label> <br>
+                                            <select name="instructor" id="instructor">
+                                                <%if (update.instructor) {%>
+                                                <option value="<%=update.instructor.id %>"><%=update.instructor.name%> </option>
+                                                <% } else { %> 
+                                                    <h>select instructor</h>
+                                                <% } %> 
+                                                <%instructor.forEach(instructor => {%>
+                                                <option value="<%=instructor.id%>"><%=instructor.name%> 
+                                                </option>
+                    
+                                                <%})%>
+                                                
+                                              </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">course description</label>
+                                            <input type="text" name="description" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp" placeholder="Enter course description" value="<%=update.description%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-6 col-xs-6">
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="exampleInputEmail1">Author</label>
+                                                <input type="text" name="author" placeholder="Authur" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp" value="<%=update.author%>" disabled>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="exampleInputEmail1">Category</label>
+                                                <input type="text" name="category" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                                    value="<%=update.category%>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-success">Update Course</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<%- include("../partials/admin/adminFooter") %> 

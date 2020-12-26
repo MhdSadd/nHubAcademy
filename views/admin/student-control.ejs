@@ -1,0 +1,65 @@
+<%- include("../partials/admin/adminHeader") %> 
+
+<style>
+	.student-table{
+		/* border: 2px solid; */
+	}
+
+	td{
+		/* border: 2px solid red; */
+	}
+</style>
+
+<!-- ============================================================== -->
+		<!-- Page Content -->
+		<!-- ============================================================== -->
+		<div id="page-wrapper">
+				<div class="container-fluid">
+					<!-- hambuga -->
+					<%- include("../partials/admin/hamburger") %>
+					<!-- hambuga -->
+						<%- include("../partials/admin/adminBreadCrumb") %>
+						<!-- /row -->
+						<div class="row">
+								<div class="col-sm-12">
+										<div class="white-box">
+												<h3 class="box-title">All Students</h3>
+												<div class="table-responsive">
+														<table class="table student-table">
+																<thead>
+																		<tr>
+																				<th>Name</th>
+																				<th>Email</th>
+																				<th>Phone Number</th>
+																				<th>Courses</th>
+																				<th>Start Date</th>
+																				<th>End Date</th>
+																		</tr>
+																</thead>
+																<tbody>
+																				<%students.forEach(students => {%>
+																		<tr>
+																				<td><%= students.name %> <br> (<%= students.studentID %> )  </td>
+																				<td><%= students.email %> </td>
+																				<td><%= students.phone %> </td>
+																				<%if (students.courses) {%>
+																					<%students.courses.forEach(courses => {%>
+																				<td><%= courses.courseName %></td>
+																				<td><%=courses.duration%> </td>
+																					<%})%>
+																			
+																				<% 	} else { %> 
+																				<% } %> 
+																		</tr>
+																				<% })%>
+																		
+																</tbody>
+														</table>
+												</div>
+										</div>
+								</div>
+						</div>
+						<!-- /.row -->
+				</div>
+
+<%- include("../partials/admin/adminFooter") %> 

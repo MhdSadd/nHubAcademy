@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required Meta Tags -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=7">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="description" content="Our Coding Academy is geared towards training young people towards building a digital economy, so they can find jobs and lead vastly improved lives.">
+
+        <!-- <meta http-equiv="refresh" content="15"> -->
+        <meta name="author" content="Sunday Ishaya, Muhammad Sadiq, Kwis Lawrence Francis">
+        <meta property="og:image" content="fabvicon.png">
+        <meta property="og:description" content="Our Coding Academy is geared towards training young people towards building a digital economy, so they can find jobs and lead vastly improved lives.">
+        <meta property="og:title" content="nAcademy">
+
+        <!-- Page Title -->
+        <title>nAcademy || <%= pagetitle %> </title>
+
+        <!-- Favicon Icon -->
+        <link rel="shortcut icon" href="/assets/favicon.png">
+
+        <!-- CSS Files -->
+        <link rel="stylesheet" href="/assets/css/animate.css">
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/assets/css/icofont.css">
+        <link rel="stylesheet" href="/assets/css/slick.css">
+        <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="/assets/css/barfiller.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+
+        <!-- font awesome -->
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    </head>
+
+    <body style="overflow-x: hidden;">
+        <!-- Preloader Starts -->
+        <div class="preloader" id="preloader">
+            <div class="preloader-inner">
+                <div class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Menu -->
+        <div class="main-menu">
+            <div class="menu-logo">
+                <a href="/"><img src="/assets/images/logo.png" alt="logo"></a>
+            </div>
+            <ul>
+                <li><a href="/">home</a></li>
+                <li><a href="/about">about</a></li>
+                <li class="have-submenu"><a href="#">course</a>
+                    <ul class="sub-menu">
+                        <li><a href="/web-development">web development</a></li>
+                        <li><a href="/mobile">mobile development</a></li>
+                        <li><a href="/graphics">graphics</a></li>
+                        <li><a href="/ar-vr">AR/VR</a></li>
+                        <li><a href="/robotics">robotics</a></li>
+                        <li><a href="/data-science">data science</a></li>
+                        <!-- <li><a href="/marketing">marketing</a></li>
+                        <li><a href="/photography">photography</a></li>
+                        <li><a href="/music">music</a></li> -->
+                    </ul>
+                </li>
+                <!-- <li><a href="/course-details">course details</a></li>
+                <li><a href="/course-video">course video</a></li> -->
+                <li><a href="/courses/package">All courses</a></li>
+                <!-- <li><a href="/instructor-details">instructor details</a></li> -->
+                <!-- <li><a href="/cart">cart</a></li> -->
+                <!-- <li><a href="/purchase">purchase</a></li> -->
+                <!-- <li class="have-submenu"><a href="#">blog</a>
+                    <ul class="sub-menu">
+                        <li><a href="/blog">blog</a></li>
+                        <li><a href="/blog-details">blog details</a></li>
+                    </ul>
+                </li> -->
+                <li><a href="/contact">contact</a></li>
+                <% if (user) { %>
+                    <li><a href="/auth/logout" >Logout</a></li>
+                    <li><a href="/instructor/profile" ><%=user.id%></a></li>
+               
+                <%}else{%>
+                    <li><a href="/auth/login">log in</a></li>
+                    <li><a href="/auth/register">register</a></li>
+                <%}%>
+
+            </ul>
+        </div>
+
+        <!-- Header Section Starts -->
+        <header class="header-section">
+            <!-- Header Info Starts -->
+            <div class="header-info">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-sm-6">
+                            <div class="info-left">
+                                <div class="phone-part">
+                                    <i class="fas fa-phone-square"></i>
+                                    <span><a href="tel:+234 345 6789">+234 345 6789</a></span>
+                                </div>
+                                <div class="email-part">
+                                    <i class="far fa-envelope-open"></i>
+                                    <span><a href="mailto:info.nAcademy@gmail.com">info.nAcademy@gmail.com</a></span>
+                                </div>
+                                <div class="menu-toggle-bar">
+                                    <div class="custom-bars">
+                                        <div class="custom-bar bar-1"></div>
+                                        <div class="custom-bar bar-2"></div>
+                                        <div class="custom-bar bar-3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="info-right">
+                                <ul>
+                                    <% if (user) { %>
+                                        <li class="login-button"><a href="/auth/logout">logout</a></li>
+                                    <% } else {%>
+                                        <li class="login-button"><a href="/auth/login">login</a></li>
+                                    <% } %> 
+                                    <li><a href="https://twitter.com/nHubNG"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="https://web.facebook.com/nHubNigeria"><i class="fab fa-facebook"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/company/nhub/"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="https://www.instagram.com/nhub_ng/"><i class="fab fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- main Header Starts -->
+            <div class="main-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="header-logo">
+                                <a href="/"><img src="/assets/images/logo.png" alt="logo" height="10px"></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="main-header-right">
+                                <!-- Category Dropdown Starts -->
+                                <div class="category-dropdown">
+                                    <div class="menu-bar">
+                                        <i class="fas fa-bars"></i>
+                                        <span>categories</span>
+                                    </div>
+                                    <div class="category-menu">
+                                        <ul>
+                                            <li><a href="/web-development">web development</a></li>
+                                            <li><a href="/education">education</a></li>
+                                            <li class="have-submenu"><a href="#">business</a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="/banking">banking sector</a></li>
+                                                    <li><a href="/corporate">corporate sector</a></li>
+                                                    <li><a href="/consulting">consulting</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="/marketing">marketing</a></li>
+                                            <li><a href="/photography">photography</a></li>
+                                            <li><a href="/music">music</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="header-search">
+                                    <!-- <form action="#">
+                                        <input type="text" placeholder="Search">
+                                        <button type="submit"><i class="fal fa-search"></i> </button>
+                                    </form> -->
+                                </div>
+                                <div class="header-button">
+                                    <a href="/auth/register" class="template-button-2">Sign up</a>
+                                    <!-- <a href="/instructor-details" class="template-button">instructor</a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>

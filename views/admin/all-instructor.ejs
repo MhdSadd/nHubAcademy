@@ -1,0 +1,61 @@
+<%- include("../partials/admin/adminHeader") %> 
+
+<!-- ============================================================== -->
+		<!-- Page Content -->
+		<!-- ============================================================== -->
+		<div id="page-wrapper">
+				<div class="container-fluid">
+					<!-- hambuga -->
+					<%- include("../partials/admin/hamburger") %>
+					<!-- hambuga -->
+						<%- include("../partials/admin/adminBreadCrumb") %>
+						<!-- /row -->
+						<div class="row">
+								<div class="col-sm-12">
+										<div class="white-box">
+												<h3 class="box-title">All Applied Instructors</h3>
+												<div class="table-responsive">
+														<table class="table">
+																<thead>
+																		<tr>
+																				<th>Name</th>
+																				<th>Email</th>
+																				<th>Skills</th>
+																				<th>Work Experience</th>
+																				<th>Approved</th>
+																				<th>Action</th>
+																		</tr>
+																</thead>
+																<tbody>
+																		<%instructors.forEach(instructor => {%>
+																					<tr>
+																				<td><%= instructor.name %> </td>
+																				<td><%= instructor.email %> </td>
+																				<td><%= instructor.skills %> </td>
+																				<td><%= instructor.experience %> </td>
+																				<td><%= instructor.instructorApproved %> </td>
+																				<td>
+																						<!-- <div class="dropdown">
+																								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+																								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+																										<a href="/admin/deleteInstructor/<%= instructor._id %>" class="dropdown-item">Delete</a>
+																										<a href="/admin/approveInstructor/<%= instructor._id %>" class="dropdown-item">Approve</a>
+																								</div>
+																						</div> -->
+																						<span  style="padding: 1rem;"><a href="/admin/approveInstructor/<%= instructor._id %>"><i class="fas fa-user-check"></i></a></span>
+																						<span style="padding: 1rem;"><a href="/admin/deleteInstructor/<%= instructor._id 
+																						%>"><i class="fas fa-trash-alt"></i></a></span>
+																				</td>
+																		</tr>
+																		<% })%>
+																		
+																</tbody>
+														</table>
+												</div>
+										</div>
+								</div>
+						</div>
+						<!-- /.row -->
+				</div>
+
+<%- include("../partials/admin/adminFooter") %> 

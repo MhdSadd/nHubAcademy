@@ -1,0 +1,68 @@
+<%- include("../partials/admin/adminHeader") %> 
+<style>
+  .course-card{
+    width: 300px; margin: 3rem; background-color: rgb(245, 208, 139); padding: 1rem;
+  }
+  .course-image{
+    height: 200px; width: 100%;
+  }
+  .card-title{
+    font-size: 2rem; font-weight: bolder;
+  }
+  .drop-btn{
+    width: 100%; background-color: #ffffff;color: #37373d; text-align: left;
+  }
+  .drop-body{
+    margin:.7rem 1rem; font-size: 1.2rem;text-align: center;word-wrap: break-word;
+  }
+
+</style>
+<!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+              <!-- hambuga -->
+              <%- include("../partials/admin/hamburger") %>
+              <!-- hambuga -->
+                <%- include("../partials/admin/adminBreadCrumb") %> 
+
+                <div class="row">
+
+                <%courses.forEach(courses => {%>
+                    
+                    <div class="card col-sm-6 col-lg-4 course-card">
+                        <div class="course-image">
+                          <img class="course-image" src="<%= courses.courseImage %>" alt="Card image cap">
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title"><%= courses.courseName %></h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">Price: <%= courses.price %> </li>
+                          <%if (courses.instructor) {%>
+                          <li class="list-group-item">Instructor: <%= courses.instructor.name %> </li>
+                         <% } else {%>
+                            
+                          <%}%>
+                          <li class="list-group-item">Author: <%=courses.author %> </li>
+                          <li style="list-style-type: none;"> <a class="btn drop-btn" data-toggle="collapse" href="#one<%=courses._id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            course description <span style="float: right;"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></span>
+                          </a></li>
+                          <div class="collapse" id="one<%=courses._id %>">
+                            <div class="card card-body drop-body"><%= courses.description %></div>
+                          </div>
+                        </ul>
+                        <div class="card-body">
+                          <a href="/admin/update-course/<%= courses._id %> " class="card-link"><button class="btn btn-success">Update Course</button></a>
+                          <a href="/admin/delete-course/<%= courses._id %> " class="card-link"><button class="btn btn-danger">Delete Course</button></a>
+                        </div>
+                      </div>
+
+
+
+                <%})%>
+              </div>
+
+            </div>
+<%- include("../partials/admin/adminFooter") %> 

@@ -1,0 +1,123 @@
+<%- include("../partials/instructor/instructorsHeader") %> 
+<style>
+    #tags {
+        float: left;
+        border: 1px solid #ccc;
+        padding: 4px;
+        font-family: Arial;
+      }
+      
+      #tags span.tag {
+        cursor: pointer;
+        display: block;
+        float: left;
+        color: #555;
+        background: orange;
+        padding: 5px 10px;
+        padding-right: 30px;
+        margin: 4px;
+      }
+      
+      #tags span.tag:hover {
+        opacity: 0.7;
+      }
+      
+      #tags span.tag:after {
+        position: absolute;
+        content: "×";
+        border: 1px solid;
+        border-radius: 10px;
+        padding: 0 4px;
+        margin: 3px 0 10px 7px;
+        font-size: 10px;
+      }
+      
+      #tags input {
+        background: #eee;
+        border: 0;
+        margin: 4px;
+        padding: 7px;
+        width: auto;
+      }
+</style>
+
+<!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <!-- burger -->
+                <%- include("../partials/instructor/hamburger") %> 
+                <!-- burger -->
+                <%- include("../partials/instructor/instructorsBreadCrumb") %>
+                <!-- /row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <form action="/instructor/update-profile" enctype="multipart/form-data"  method="POST" class="form-horizontal form-material">
+                                <div class="form-group">
+                                    <label class="col-md-12">Full Name</label>
+                                    <div class="col-md-12">
+                                        <input type="text" name="name" class="form-control form-control-line" value="<%= name %>"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-email" class="col-md-12">Email</label>
+                                    <div class="col-md-12">
+                                        <input type="email" name="email" class="form-control form-control-line" value="<%= email %>" name="example-email" id="example-email"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Phone No</label>
+                                    <div class="col-md-12">
+                                        <input type="text" name="phone" class="form-control form-control-line" value="<%= phone %>"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Avatar</label>
+                                    <div class="col-md-12">
+                                        <input type="file" name="instructorAvatar" value="avatar" class="form-control form-control-line"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Work Experience</label>
+                                    <div class="col-md-12">
+                                        <textarea rows="2" name="experience"  class="form-control form-control-line"><%= experience %> </textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Skills</label>
+                                    <div id="tags" class="col-md-12">
+                                        <input type="text" name="skills" id="tags" placeholder="Add skills seperate with a comma" class="form-control form-control-line"/>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label for="skills" class="col-md-12">Skills</label>
+                                    <div class="col-md-12">
+                                        <input type="text" name="skills" id="skills" class="form-control form-control-line">
+                                    </div>
+                                </div> -->
+                                <div class="form-group">
+                                    <label class="col-sm-12">Select Specialty</label>
+                                    <div class="col-sm-12">
+                                        <select name="specialty" class="form-control form-control-line">
+                                            <option>Front End</option>
+                                            <option>Back End</option>
+                                            <option>Mobile App Development</option>
+                                            <option>Full Stack Development</option>
+                                            <option>Robotics</option>
+                                            <option>Data Science</option>
+                                            <option>Machine Learning</option>
+                                            <option>Artificial Intelligence</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success">Update Profile</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+
+<%- include("../partials/instructor/instructorsFooter") %> 

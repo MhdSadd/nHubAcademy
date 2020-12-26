@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Our Coding Academy is geared towards training young people towards building a digital economy, so they can find jobs and lead vastly improved lives.">
+    <!-- <meta http-equiv="refresh" content="30"> -->
+    <meta name="author" content="Sunday Ishaya, Muhammad Sadiq, Kwis Lawrence Francis">
+    <meta property="og:image" content="favicon.png">
+    <meta property="og:description" content="Our Coding Academy is geared towards training young people towards building a digital economy, so they can find jobs and lead vastly improved lives.">
+    <meta property="og:title" content="nAcademy">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/plugins/images/favicon.png">
+    <title>nAcademy || <%= pagetitle %> </title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="/static/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <!-- toast CSS -->
+    <link href="/static/plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
+    <!-- morris CSS -->
+    <link href="/static/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
+    <!-- chartist CSS -->
+
+        <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+
+    <!-- for toggle -->
+    <link rel="stylesheet" href= 
+    "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+            integrity= 
+    "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+        crossorigin="anonymous"> 
+    <link href= 
+        "https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
+        rel="stylesheet"/> 
+        <!--  -->
+
+    <link href="/static/plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet">
+    <link href="/static/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="/static/css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/static/css/style.css" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="/static/css/colors/default.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<style>
+    .drpbtn {
+        color: #000;
+        font-size: 25px;
+        cursor: pointer;
+        /*display: none;*/
+    }   
+
+    .drpbtn:hover, .drpbtn:focus {
+        color: #223;
+    } 
+
+    .drpdown {
+        position: relative;
+        display: none;
+    }   
+
+    .drp-content {
+        display: none;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.7);
+        width: calc(1vh + 230px);
+        overflow: auto;
+        z-index: 1;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
+
+    .show {display: block;}
+
+    .drp-content li {
+        padding: 6px 10px;
+        width: 100%;
+    }
+
+    .drp-content li:hover {
+        background-color: white;
+        display: block;
+    }
+
+    
+    .drp-content li a {
+        color: rgb(241, 133, 51);
+    }
+
+    @media (max-width: 1169px) {
+        .drpdown {
+            display: inline-block;
+        }
+    }
+
+
+    /*@media (max-width: 1169px) {
+        label #btn {
+            display: block;
+        }
+
+        #check:checked ~ .true-nav {
+            display: block;
+        }
+
+        #check:checked ~ label #btn {
+            display: none;
+        }
+
+        #check:checked ~ label #cancel {
+            display: block;
+        }
+        .no {
+            display: block;
+        }
+        .true-nav {
+            display: block;
+        }
+    }*/
+</style>
+<script>
+    function myFunction() {
+        document.getElementById("myDrpdown").classList.toggle("show");
+    }
+    window.onclick = function(event) {
+        if (!event.target.matches('.drpbtn')) {
+            var dropdown = document.getElementsByClassName("drop-content");
+            var i;
+            for (i = 0; i < dropdown.length; i++) {
+                var openDropdown = dropdown[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header">
+                <div class="top-left-part">
+                    <!-- Logo -->
+                    <a class="logo" href="/">
+                        <!-- Logo icon image, you can use font-icon also --><b>
+                        <!--This is dark logo icon--><img src="/static/plugins/images/admin-logo.png" alt="home" class="dark-logo" style="height: 50px; width: auto;"/><!--This is light logo icon--><img src="/static/plugins/images/admin-logo-dark.png" alt="home" class="light-logo" style="height: 50px; width: auto;"/>
+                    </a>
+                </div>
+                <!-- /Logo -->
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    <li>
+                        <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
+                            <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
+                    </li>
+                    <li class="dropdown">
+                        <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> <img src="<%= instructorAvatar %> " alt="user-img" width="36" class="img-circle"><b class="hidden-xs"><%= name %> </b></a>
+                        <!-- <div class="dropdown-menu">
+                            <a href="/" class="dropdown-item">Home</a>
+                            <a href="/auth/logout" class="dropdown-item">Logout</a>
+                        </div> -->
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+        <!-- End Top Navigation -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav slimscrollsidebar">
+                <div class="sidebar-head">
+                    <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3>
+                </div>
+                <ul class="nav" id="side-menu">
+                    <li style="padding: 70px 0 0;">
+                        <a href="/instructor/profile" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Profile</a>
+                    </li>
+                    <li>
+                        <a href="/instructor" class="waves-effect"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Assigned Student</a>
+                    </li>
+                    <li>
+                        <a href="/instructor/update-profile" class="waves-effect"><i class="fa fa-wrench fa-fw" aria-hidden="true"></i>Update Profile</a>
+                    </li>
+                    <li>
+                        <a href="/auth/logout" class="waves-effect"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>Log Out</a>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->

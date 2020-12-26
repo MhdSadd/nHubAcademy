@@ -1,0 +1,48 @@
+<%- include("../partials/admin/adminHeader") %> 
+
+<!-- ============================================================== -->
+		<!-- Page Content -->
+		<!-- ============================================================== -->
+		<div id="page-wrapper">
+				<div class="container-fluid">
+					<!-- hambuga -->
+					<%- include("../partials/admin/hamburger") %>
+					<!-- hambuga -->
+						<%- include("../partials/admin/adminBreadCrumb") %>
+						<!-- /row -->
+						<div class="row">
+								<div class="col-sm-12">
+										<div class="white-box">
+												<h3 class="box-title">All Approved Instructors</h3>
+												<div class="table-responsive">
+														<table class="table">
+																<thead>
+																		<tr>
+																				<th>Name</th>
+																				<th>Email</th>
+																				<th>Skills</th>
+																				<th>Work Experience</th>
+																				<th>Approved</th>
+																		</tr>
+																</thead>
+																<tbody>
+																		<%approved.forEach(approved => {%>
+																					<tr>
+																				<td><%= approved.name %> </td>
+																				<td><%= approved.email %> </td>
+																				<td><%= approved.skills %> </td>
+																				<td><%= approved.experience %> </td>
+																				<td><%= approved.instructorApproved %> </td>
+																		</tr>
+																		<% })%>
+																		
+																</tbody>
+														</table>
+												</div>
+										</div>
+								</div>
+						</div>
+						<!-- /.row -->
+				</div>
+
+<%- include("../partials/admin/adminFooter") %> 

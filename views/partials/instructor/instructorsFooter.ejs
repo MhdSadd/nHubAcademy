@@ -1,0 +1,71 @@
+            <!-- /.container-fluid -->
+            <footer class="footer text-center">&copy; nAcademy <script>document.write(new Date().getFullYear())</script>. Designed by <a href="#">Sunday Ishaya</a>, <a href="#">Mohammad Sadiq</a>, <a href="#">Kwis Lawrence Francis</a></footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="/static/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="/static/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="/static/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="/static/js/waves.js"></script>
+    <!--Counter js -->
+    <script src="/static/plugins/bower_components/waypoints/lib/jquery.waypoints.js"></script>
+    <script src="/static/plugins/bower_components/counterup/jquery.counterup.min.js"></script>
+    <!-- chartist chart -->
+    <script src="/static/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
+    <script src="/static/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!-- Sparkline chart JavaScript -->
+    <script src="/static/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script>
+        jQuery(function($) {
+
+            $('#tags input').on('focusout', function() {
+              var txt = this.value.replace(/[^a-zA-Z0-9\+\-\.\#]/g, ''); // allowed characters list
+              if (txt) $(this).before('<span class="tag">' + txt + '</span>');
+              this.value = "";
+              this.focus();
+            }).on('keyup', function(e) {
+              // comma|enter (add more keyCodes delimited with | pipe)
+              if (/(188|13)/.test(e.which)) $(this).trigger('focusout')
+              var array = $.makeArray(document.getElementsByTagName("input").value);  
+            });
+          
+            $('#tags').on('click', '.tag', function() {
+              if (confirm) $(this).remove();
+            });
+          
+          });
+    </script>
+    <!-- Custom Theme JavaScript -->
+    <script src="/static/js/custom.min.js"></script>
+    <script src="/static/js/dashboard1.js"></script>
+    <script src="/static/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    <script src= "https://code.jquery.com/jquery.min.js"></script> 
+    <script src= "https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"> </script>
+    <script> 
+      // $(function() { 
+      //     $('#toggle-one').bootstrapToggle({ 
+      //         on: 'Available', 
+      //         off: 'Not Available' 
+      //     }); 
+
+      //     $('#toggle-one').change(function(){
+      //       console.log($(this).prop('checked'))
+      //     })
+      // }) 
+  </script>  
+</body>
+
+</html>

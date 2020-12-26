@@ -1,0 +1,100 @@
+<%- include("../partials/admin/adminHeader") %> 
+
+<!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <!-- hambuga -->
+                <%- include("../partials/admin/hamburger") %>
+                <!-- hambuga -->
+                <%- include("../partials/admin/adminBreadCrumb") %> 
+                <!-- /.row -->
+                <!-- ============================================================== -->
+                <!-- Different data widgets -->
+                <!-- ============================================================== -->
+                <!-- .row -->
+                <div class="row">
+                    <%- include('../partials/messages') %>
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Add Course</h3>
+                            <form action="/courses/add-course" method="POST" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-sm-6" style="border-right: .5px solid orange;">
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="exampleFormControlFile1">course image</label>
+                                                <input type="file" name="courseImage" multiple="multiple" class="form-control-file" id="exampleFormControlFile1">
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="exampleInputEmail1">Percentage off</label>
+                                                <input type="text" name="promo" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                                    placeholder="Enter percentage Off">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="exampleInputEmail1">course name</label>
+                                                <input type="text" name="courseName" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                                    placeholder="Enter course name">
+                                            </div>
+        
+                                            <!--  -->
+                                            <div class="form-group col-sm-6">
+                                            <label for="exampleInputEmail1">course duration</label>
+                                            <input type="text" name="duration" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                                placeholder="Enter course duration">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="exampleInputEmail1">Price</label>
+                                                <input type="number" name="price" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp"
+                                                    placeholder="Enter course price">
+                                            </div>
+        
+                                            <!--  -->
+                                            <div class="form-group col-sm-6">
+                                            <label for="exampleInputEmail1">instructor</label> <br>
+                                            <select name="instructor" id="instructor" class="form-control form-control-line">
+                                                <option value="all instructor" disabled selected>all instructor</option>
+                                                <!-- <option value="default" selected>Default</option> -->
+                                                <%instructor.forEach(instructor => {%>
+                                                <option value="<%= instructor.id %>"><%=instructor.name  %> </option>
+                                                <%})%>
+                                                
+                                            </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">course description</label>
+                                            <input type="text" name="description" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp" placeholder="Enter course description">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="exampleInputEmail1">Author</label>
+                                                <input type="text" name="author" class="form-control" id="exampleInputProjectName" aria-describedby="emailHelp" value="<%= author %> " readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="exampleInputEmail1">Category</label>
+                                                <select name="category" class="form-control form-control-line">
+                                                    <option value="default" selected>Default</option>
+                                                    <%categories.forEach(categories => {%>    
+                                                    <option value="<%= categories %>" ><%= categories %> </option>
+                                                    <% }) %> 
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-success">Add Course</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<%- include("../partials/admin/adminFooter") %> 
