@@ -1,6 +1,8 @@
 const { Course } = require("../../models/courses/course");
+const { Outline } = require("../../models/courses/courseOutline");
 const { Student } = require("../../models/students/student");
 const {Instructor} = require("../../models/instructor/instructor")
+const moment = require("moment");
 const cloudinary = require("../../config/cloudinary");
 const api_key = process.env.MAILGUN_API_KEY
 const domain = process.env.DOMAIN
@@ -23,7 +25,7 @@ module.exports = {
     const courseImage = req.file;
     let errors = [];
     // console.log("body consoling::::::::::", req.body, req.file);
-    if (!courseImage || !courseName || !price || !duration || !category) {
+    if (!courseImage || !courseName) {
       errors.push({ msg: "All field required" });
     } else {
 
@@ -37,18 +39,34 @@ module.exports = {
           }
           else{
             const newCourse = await new Course({
-              courseName: courseName.toUpperCase().trim(),
-              price: price.trim(),
-              duration:duration.trim(),
+              courseName: courseName.toUpperCase(),
+              price,
+              duration,
               instructor,
-              promo:promo.trim(),
-              category:category.trim(),
-              description:description.trim(),
-              author:author.trim(),
+              promo,
+              category,
+              description,
+              author,
               courseImage: await result.secure_url,
             });
             // console.log(newCourse)
-            newCourse.save();
+            newCourse.save()
+            // .then((data)=>{
+            //   // console.log('dddddddddddddddd', data._id)
+            //   let {outlineName, outlineContent} = req.body
+            //   console.log('oututututututu',req.body)
+            //   // if (!outlineContent){
+            //   //   console.log('required field')
+            //   // }else{
+            //   //   const outline = new Outline({
+            //   //     courseId:data._id,
+            //   //     outlineName,
+            //   //     outlineContent
+            //   //   })
+            //   //   outline.save()
+            //   //   console.log(outline)
+            //   // }
+            // })
             res.redirect("/admin/all-courses");
           }
         }
@@ -63,7 +81,8 @@ module.exports = {
       if (err) throw err;
       else {
         let pagetitle = "Courses";
-        res.render("default/package", { pagetitle, courses });
+        const user  = req.user
+        res.render("default/package", { pagetitle, courses, user });
       }
     });
   },
@@ -76,7 +95,8 @@ module.exports = {
       .then((single) => {
         // console.log("nnnnnnnnnn", single)
         const pagetitle = "single Course";
-        res.render("default/single-package", { pagetitle, single });        
+        const user  = req.user
+        res.render("default/single-package", { pagetitle, single, user });        
       })
       .catch((err) => console.log(err));
   },
@@ -90,6 +110,10 @@ module.exports = {
       .then((course) => {
         let studentID = req.body;
         Student.findOne(studentID).then(async(student) => {
+          // let today = new Date()
+          // let dateRegistered = Date.now
+          // const dateRe = moment(dateRegistered).format('dd.MM.yyyy') 
+          // console.log(dateRe)
           student.courses.push(course)
           console.log(student)
           // Sending mail

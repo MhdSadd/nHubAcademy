@@ -106,8 +106,8 @@ module.exports = {
 
   // all course
   allCourseGet: (req, res) => {
-    const courses = Course.find({}).populate("instructor", ["name", "email"])
-    courses.exec((err, courses) => {
+    const course = Course.find({}).populate("instructor", ["name", "email"])
+    course.exec((err, courses) => {
       if (err) throw err;
       else {
         console.log(courses);
@@ -178,12 +178,26 @@ module.exports = {
   },
 
   student_control: async(req, res)=>{
-   const student = Student.find({}).populate("courses", ['courseName', 'duration'])
-   student.exec((err, students)=>{
+   const students = Student.find({}).populate("courses", ['courseName', 'duration'])
+   students.exec((err, students)=>{
 
      if(err) throw err
      else{
-      console.log(students)
+       if (!students) return;
+      //  const newStudentsList = students.map(item => (
+      //    item.courses
+      //  ))
+      let studentss
+      let recentCourse;
+      const newStudentsList = students.forEach(student=>{
+        studentss = student.courses    
+        console.log(studentss)
+       
+      })
+      //  console.log('===================>',lastCourse);
+      //  const last = students[0].courses.length-1
+      //  const lastOf = students[0].courses[last]
+
       const pagetitle = "Student Control";
       const name = req.user.name;
       const email = req.user.email;
@@ -192,7 +206,26 @@ module.exports = {
       res.render("admin/student-control", {pagetitle, students, name, email, avatar, date})
      }
    })
+  },
+
+
+
+  single_studentGet: async(req,res)=>{
+    const id = req.params.studentId; 
+    // console.log('look==========>>', id)
+    await Student.findById(id).populate("courses", ["courseName", "instructor"])
+      .then((singleStudent) => {
+        console.log("==========>>", singleStudent)
+        const pagetitle = "single student";
+        const name = req.user.name;
+        const email = req.user.email;
+        const phone = req.user.phone;
+        const avatar = req.user.avatar
+        res.render("admin/single-student", { pagetitle, singleStudent, name, avatar});        
+      })
+      .catch((err) => console.log(err));
   }
+  
 
   // profile update
 //   profile_update: async(req, res, next)=>{

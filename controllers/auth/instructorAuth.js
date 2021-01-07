@@ -4,15 +4,35 @@ const {Instructor} = require("../../models/instructor/instructor");
 const randomString = require("randomstring");
 
 module.exports = {
+
+    logout: (req, res) => {
+        req.logOut();
+        req.flash({message:"You are logged out"});
+        res.redirect("/auth/login")
+    },
+
+    loginGet: (req, res) => {
+        const pagetitle = "Login";
+        res.render("auth/login", {pagetitle});
+    },
+
+    loginPost: (req, res, next) => {
+        passport.authenticate("instructor", {
+            successRedirect: "/instructor/profile",
+            failureRedirect: "/auth/login",
+            failureFlash: true,
+        })(req, res, next)
+    },
+
     registerGet: (req, res) => {
         const pagetitle = "Register";
         res.render("auth/register", {pagetitle});
     },
 
     registerPost: async (req, res) => {
-            const { name, email, phone, password, confirmPassword, instructorApproved, skills, experience} = req.body;
-            const instructorAvatar = req.file
-            console.log(req.body);
+        const { name, email, phone, password, confirmPassword} = req.body;
+        const instructorAvatar = req.file
+        // console.log(req.body); 
         let errors = [];
 
         // CHECKING REQUIRED FIELD
@@ -27,7 +47,7 @@ module.exports = {
 
         //CHECKING PASSWORD LENGHT
         if (password.length < 4) {
-            errors.push({ msg: "Password must be atleast 3 Characters" });
+            errors.push({ msg: "Password must be atleast 4 Characters" });
         }
 
         if (errors.length > 0) {
@@ -41,29 +61,29 @@ module.exports = {
                 confirmPassword,
                 pagetitle
             });
-        } else {
+        } 
+        else {
             await Instructor.findOne({email: email})
             .then(async(instructor) => {
                 if(instructor) {
                     // console.log("Sorry User already Exist ");
                     return res.redirect("/auth/register");
-                } else {
-                    const instructorId = `nInst-${randomString.generate({
-                        length: 5,
-                        charset: "alphanumeric"
-                    })}`
+                } 
+                else {
+                    const Id = randomString.generate({length: 5, charset: "alphanumeric"})
+                    const instructorId = `nInst-${Id}`
                     const newInstructor = await new Instructor ({
                         name,
                         email,
                         phone,
                         instructorAvatar,
-                        skills,
+                        skills:[],
                         experience:[],
                         password,
                         instructorId,
                     })
 
-
+                  
 
                     // console.log(`New instructor created: ${newInstructor}`);
 
@@ -81,35 +101,15 @@ module.exports = {
                                 req.flash(
                                     "success_msg",
                                     "Registration succesfull, login and update your profile"
-                                );
-                                // console.log(`Reg successfull ${instructor}`);
-                                res.redirect("/auth/login");
+                                )
+                                res.redirect("/auth/login")
                             })
-                            .catch((err) => console.log(err));
+                            .catch((err) => console.log(err))
                         })
-                    );
+                    )
                 }
             })
         }
     },
 
-    loginGet: (req, res) => {
-        const pagetitle = "Login";
-        res.render("auth/login", {pagetitle});
-    },
-
-    loginPost: (req, res, next) => {
-        passport.authenticate("instructor", {
-            successRedirect: "/instructor/profile",
-            failureRedirect: "/auth/login",
-            failureFlash: true,
-        })(req, res, next);
-    },
-
-    logout: (req, res) => {
-        req.logOut();
-        req.flash({message:"You are logged out"});
-        res.redirect("/auth/login")
-    },
-  
 }

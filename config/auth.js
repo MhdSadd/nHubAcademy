@@ -2,7 +2,7 @@
 module.exports = {
     ensureAuthenticated: (req, res, next) => {
         if(req.isAuthenticated()) {
-            return next();
+            next()
         } else {
             req.flash("error_msg", "Log in Please");
             res.redirect("/auth/login");
@@ -28,5 +28,12 @@ module.exports = {
             return next();
         }
         res.redirect("/admin");
+    },
+    sessionChecker :(req, res, next) => {
+        if (req.session.user && req.cookies.user_sid) {
+            res.redirect('ggggggggg');
+        } else {
+            next();
+        }    
     }
 }

@@ -42,7 +42,7 @@ const instructorSchema = new Schema({
     instructorAvatar: {
         type: String,
     },
-    skills:[mongoose.Schema.Types.Array],
+    skills:mongoose.Schema.Types.Array,
     experience: {
         type: Array
     },

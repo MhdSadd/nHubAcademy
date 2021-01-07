@@ -1,88 +1,113 @@
-const localStrategy = require("passport-local").Strategy;
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 const mongooose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const { Instructor } = require("../models/instructor/instructor");
 const { Admin } = require("../models/admin/admin");
 
-module.exports = function (passport) {
-  passport.use(
-    "instructor", 
-    new localStrategy(
-      {
-        usernameField: "email",
-        passwordField: "password",
+ 
+
+module.exports = function(passport) {
+
+  passport.use('admin', new LocalStrategy (
+    {
+      usernameField: "email",
+      passwordField: "password"
       },
-      (email, password, done) => {
-        // MATCH  INSTRUCTOR
-        Instructor.findOne({ email: email})
-        .then((user) => {
+
+      function(email, password, done) {
+      
+        Admin.findOne({email:email})
+        .then(user => {
+           if (!user) {
+            return done(null, false, { message: "User does not exist" });
+           }    
+        // console.log(user)
+            bcrypt.compare(password, user.password, (err, isMatch)=>{
+            //  if(err) {throw err}
+             if(!isMatch){
+              return done(null, false, { message: "Password is not valid." });
+           }
+              return done(null, user);
+  
+           })      
+        });  
+      }
+  ))
+
+  passport.use('instructor', new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password"
+      },
+
+  function(email, password, done) {
+  
+    Instructor.findOne({email:email})
+    .then(user => {
         if (!user) {
-              return done(null, false, {
-                message: "No instructor with this mail"
-              });
-            }
+        return done(null, false, { message: "User does not exist" });
+        }    
+        // console.log(user)
+        bcrypt.compare(password, user.password, (err, isMatch)=>{
+        //  if(err) {throw err}
+          if(!isMatch){
+          return done(null, false, { message: "Password is not valid." });
+        }
+          return done(null, user);
 
-            // MATCH PASSWORD
-            bcrypt.compare(password, user.password, (err, isMatch) => {
-              if (err) throw err;
-              if (isMatch) {
-                console.log("PPPPPPPPPPPPPPPPPPPPP", user)
-                return done(null, user);
-              } else {
-                return done(null, false, { message: "Password incorrect" });
-              }
-            })
-          })
-          .catch((err) => console.log(err));
-      }
-    )
-  );
+        })      
+    });  
+  }
 
-  passport.use(
-    "admin",
-    new localStrategy(
-      {
-        usernameField: "email",
-        passwordField: "password",
-      },
-      (email, password, done) => {
-        // match admin
+  ))
 
-        Admin.findOne({ email: email })
-          .then((user) => {
-            if (!user) {
-              return done(null, false, {
-                message: "This admin does not exist",
-              });
-            }
+  function SessionConstructor(userId, userGroup, details) {
+    this.userId = userId;
+    this.userGroup = userGroup;
+    this.details = details;
+  }
 
-            // matching password
-            bcrypt.compare(password, user.password, (err, isMatch) => {
-              if (err) throw err;
-              if (isMatch) {
-                return done(null, user);
-              } else {
-                return done(null, false, { message: "Password Incorrect" });
-              }
-            });
-          })
-          .catch((err) => console.log(err));
-      }
-    )
-  );
+  passport.serializeUser(function (userObject, done) {
 
-  // SERIALIZE AND DESERIALIZE  INSTRUCTOR
-  passport.serializeUser((user, done) => {
-    return done(null, user.id);
+    // userObject could be a Model1 or a Model2... or Model3, Model4, etc.
+
+    let userGroup = "model1";
+    let userPrototype =  Object.getPrototypeOf(userObject);
+    if (userPrototype === Admin.prototype) {
+      userGroup = "model1";
+
+    } else if (userPrototype === Instructor.prototype) {
+      userGroup = "model2";
+
+    }
+    let sessionConstructor = new SessionConstructor(userObject.id, userGroup, '');
+    done(null,sessionConstructor);
+
   });
 
-  passport.deserializeUser((id, done) => {
-    Admin.findById(id, (err, user) => {
-      if (err) return done(err);
-      if (user) return done(null, user);
-      Instructor.findById(id, (err, user) => {
-        done(err, user);
+  passport.deserializeUser(function (sessionConstructor, done) {
+    if (sessionConstructor.userGroup == 'model1') {
+      Admin.findOne({
+          _id: sessionConstructor.userId
+
+      }, '-localStrategy.password', function (err, user) { // When using string syntax, prefixing a path with - will flag that path as excluded.
+
+          done(err, user);
       });
-    });
+
+    } else if (sessionConstructor.userGroup == 'model2') {
+      Instructor.findOne({
+          _id: sessionConstructor.userId
+
+      }, '-localStrategy.password', function (err, user) { // When using string syntax, prefixing a path with - will flag that path as excluded.
+
+          done(err, user);
+
+      });
+
+    }
+
   });
-};
+
+}

@@ -7,22 +7,26 @@ const {Instructor} = require("../../models/instructor/instructor")
 module.exports = {
   index: async (req, res) => {
     const pagetitle = "Home";
+    const user  = req.user
     // const no = courseNo;
-    res.render("default/index", { pagetitle});
+    res.render("default/index", { pagetitle, user});
 
   },
   about: (req, res) => {
     const pagetitle = "About";
-    res.render("default/about", { pagetitle });
+    const user  = req.user
+    res.render("default/about", { pagetitle, user });
   },
   contact: (req, res) => {
     const pagetitle = "Contact";
-    res.render("default/contact", { pagetitle });
+    const user  = req.user
+    res.render("default/contact", { pagetitle, user });
   },
 
   course_details: (req, res) => {
     const pagetitle = "Course Details";
-    res.render("default/course-details", { pagetitle });
+    const user  = req.user
+    res.render("default/course-details", { pagetitle, user });
   },
 
   instructor_details: async(req, res) => {
@@ -31,13 +35,15 @@ module.exports = {
       .then((instructor)=>{
       console.log("loooooooo:::::",instructor)
       const pagetitle = "Instructor Details";
-      res.render("default/instructor-details", { pagetitle, instructor });
+      const user  = req.user
+      res.render("default/instructor-details", { pagetitle, instructor, user });
     })
   },
 
   reigisterGet: (req, res) => {
     let pageTitle = "Register";
-    res.render("auth/register", { pageTitle });
+    const user  = req.user
+    res.render("auth/register", { pageTitle, user });
   },
 
 
@@ -51,7 +57,8 @@ module.exports = {
     .then((webDev)=>{
       console.log(webDev)
       const pagetitle = "Web Development";
-      res.render("default/web-development", {instructor, pagetitle, webDev  });
+      const user  = req.user
+      res.render("default/web-development", {instructor, pagetitle, webDev, user  });
     })
     }
   }
@@ -67,7 +74,8 @@ module.exports = {
       .then((dataScience)=>{
         console.log(dataScience)
         const pagetitle = "Data Science & Machine Learning";
-        res.render("default/data-science", {instructor, pagetitle, dataScience  });
+        const user  = req.user
+        res.render("default/data-science", {instructor, pagetitle, dataScience, user  });
       })
     }
   }
@@ -86,7 +94,8 @@ module.exports = {
         else{
           console.log(mobileDev)
           const pagetitle = "Mobile Development";
-          res.render("default/mobile-development", {instructor, pagetitle, mobileDev});
+          const user  = req.user
+          res.render("default/mobile-development", {instructor, pagetitle, mobileDev, user});
         }
       })
     }
@@ -106,7 +115,8 @@ module.exports = {
           else{
             console.log(graphics)
             const pagetitle = "Graphics";
-            res.render("default/graphics", {instructor, pagetitle, graphics});
+            const user  = req.user
+            res.render("default/graphics", {instructor, pagetitle, graphics, user});
           }
         })
       }
@@ -126,7 +136,8 @@ module.exports = {
           else{
             console.log(robotics)
             const pagetitle = "Robotics & AI";
-            res.render("default/robotics", {instructor, pagetitle, robotics});
+            const user  = req.user
+            res.render("default/robotics", {instructor, pagetitle, robotics, user});
           }
         })
       }
@@ -147,7 +158,8 @@ module.exports = {
           else{
             console.log(ar_vr)
             const pagetitle = "Augmented & Visual Realities";
-            res.render("default/ar-vr", {instructor, pagetitle, ar_vr});
+            const user  = req.user
+            res.render("default/ar-vr", {instructor, pagetitle, ar_vr, user});
           }
         })
       }

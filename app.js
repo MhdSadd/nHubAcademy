@@ -58,9 +58,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 // SET UP EXPRESS_SESSION MIDDLEWARE
 app.use(
     session({
-        secret: `${process.env.NODE_SESSION}`,
-        resave: true,
-        saveUninitialized: true,
+        secret: process.env.NODE_SECRET,
+        resave: false,
+        saveUninitialized: false,
         cookie: { secure: false, maxAge: Date.now() + 60000},
         store: new MongoStore({
             mongooseConnection: mongoose.connection,
@@ -97,41 +97,45 @@ app.use("/admin", admin);
 app.use("/instructor", instructors);
 
 
+
+app.use(( req, res, next) => {
+    let pagetitle = "404";
+    res.render("error_page", {pagetitle})
+    next()
+})
+
+
+
 // Error handling
 // catching 404 and forward to error handler
-app.use((req, res, next) => {
-    var err = new Error("Not Found");
-    err.status = 404;
-    next(err);
-});
-
-// app.use(( req, res, next) => {
-//     let pagetitle = "404";
-//     res.render("error_page", {pagetitle})
-// })
+// app.use((req, res, next) => {
+//     var err = new Error("Not Found");
+//     err.status = 404;
+//     next(err);
+// });
 
 // Decelopment error handler
 // printing stack trace
-if(app.get("env") === "development") {
-    app.use((err, req, res, next) => {
-        res.status(err.status || 500);
-        res.render("error_page", {
-            message: err.message,
-            error: err,
-            pagetitle: "Error Page"
-        });
-    });
-}
+// if(app.get("env") === "development") {
+//     app.use((err, req, res, next) => {
+//         res.status(err.status || 500);
+//         res.render("error_page", {
+//             message: err.message,
+//             error: err,
+//             pagetitle: "Error Page"
+//         });
+//     });
+// }
 
 // production error handler 
-app.use((err, req, res, next) => {
-    res.status(err.status || 500);
-    res.render("error_page", {
-        message: err.message,
-        error: {},
-        pagetitle: "Error Page"
-    })
-})
+// app.use((err, req, res, next) => {
+//     res.status(err.status || 500);
+//     res.render("error_page", {
+//         message: err.message,
+//         error: {},
+//         pagetitle: "Error Page"
+//     })
+// })
 
 
 app.listen(process.env.PORT, process.env.HOSTNAME, () => {

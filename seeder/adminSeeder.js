@@ -29,8 +29,8 @@ const admin = new Admin({
   email: "ayuba@nhubnigeria.com",
   phone: 1010101010,
   password: "1234abcd",
-  userType: "Admin",
-  avatar: "/assets/images/avatarProfilePic.png"
+  userType: "/assets/images/avatarProfilePic.pngAdmin",
+  avatar: ""
 });
 
 bcrypt.genSalt(10, (err, salt) => {

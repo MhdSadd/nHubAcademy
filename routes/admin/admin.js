@@ -1,6 +1,6 @@
 const router = require("express").Router()
-const { ensureAuthenticated,verifyPermission,isLoggedIn,forwardAuthenticated } = require("../../config/auth")
-const { create_course, profile, all_instructors, allCourseGet, delete_instructor, approve_instructor, delete_course, update_courseGet, update_coursePost, updateCourse, approved_instructors, student_control} = require("../../controllers/admin/adminController");
+const { ensureAuthenticated,sessionChecker,verifyPermission,isLoggedIn,forwardAuthenticated } = require("../../config/auth")
+const { create_course, profile, all_instructors, allCourseGet, delete_instructor, approve_instructor, delete_course, update_courseGet, update_coursePost, updateCourse, approved_instructors, student_control, single_studentGet} = require("../../controllers/admin/adminController");
 const upload = require('../../config/multer')
 
 
@@ -40,6 +40,9 @@ router.get("/all-courses",ensureAuthenticated, allCourseGet);
 
 // all student GET
 router.get("/all-student", ensureAuthenticated, student_control )
+
+// single student GET
+router.get("/single-student/:studentId", ensureAuthenticated, single_studentGet )
 
 // update course page GET
 // router.get("/update-course", ensureAuthenticated, update_courseGet);

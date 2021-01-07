@@ -28,7 +28,138 @@
     <script src="/static/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
     <!-- Sparkline chart JavaScript -->
     <script src="/static/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+
+      <!-------Hamburger script------->
     <script>
+      function myFunction() {
+          document.getElementById("myDrpdown").classList.toggle("show");
+      }
+      window.onclick = function(event) {
+          if (!event.target.matches('.drpbtn')) {
+              var dropdown = document.getElementsByClassName("drop-content");
+              var i;
+              for (i = 0; i < dropdown.length; i++) {
+                  var openDropdown = dropdown[i];
+                  if (openDropdown.classList.contains('show')) {
+                      openDropdown.classList.remove('show');
+                  }
+              }
+          }
+      }
+  </script>
+
+  <!---------Skills pills script--------->
+    <script>
+      initFeatures();
+
+    function addFeature() {
+      var $features = $('.features');
+      var pillInput = $('<span class="tag pill-input"><input name="skills" class="skill-input" type="text" size="1"/> <i class="delete"> &times; </i></span>');
+      $features.append(pillInput);
+      initFeatures();
+      $('.pill-input').last().find('input').focus()
+    }
+
+    function removeFeatures() {
+      $('.pill-input').remove();
+      initFeatures();
+    }
+
+    function initFeatures() {
+      var $parent = $('.pill-input');
+      var $input = $('.pill-input > input');
+      var $closeButton = $('.delete');
+      
+      $closeButton.click(function() {
+        $(this).parent().remove();
+      });
+
+      $parent.click(function() {
+        $(this).find('input').focus();
+      });
+
+      $input.focus(function() {
+        $(this).parent().addClass('focus');
+      });
+
+      // editted
+      let skills = $("input.skill-input")
+      .map(function(){return $(this).val();}).get();
+      console.log(skills);
+      
+      $input.blur(function() {
+        var input = $(this);
+        
+        if (input.length) {
+          input.parent().addClass('tag-gray')
+        }
+        
+        input.parent().removeClass('focus');
+      });
+
+      var e = 'keyup,keypress,focus,blur,change'.split(',');
+
+      for (var i in e) {
+        $input.on(e[i], function() {
+          var $this = $(this);
+
+          if ($this.val().length == 0) {
+            $this.attr('size', 1);
+          } else {
+            $this.attr('size', $this.val().length);
+          }
+        });
+      }
+    
+    }
+  </script>
+
+  <!-------Availability toggle script------>
+<script>
+  $('.cb-value').click(function() {
+  var mainParent = $(this).parent('.toggle-btn');
+  if($(mainParent).find('input.cb-value').is(':checked')) {
+    const data = {
+      // name should be the instructors name as this
+      // this is a sample
+      name: 'emmanuel'
+    }
+    axios.post('/instructor/update-availability', data )
+        .then( response => {
+          // alert(data);
+            console.log(response);
+        })
+        .catch(err => alert('an arr ocuured..'));
+         $(mainParent).addClass('active');
+
+  } else {
+    const data = {
+      name: 'emmanuel'
+    }
+    axios.post('/instructor/update-availability', data )
+        .then( response => {
+          // alert(data);
+            console.log(response);
+         
+        })
+        .catch(err => alert('an arr ocuured..'));
+        $(mainParent).removeClass('active');
+
+  }
+
+  })
+</script>
+
+  
+
+
+
+
+
+
+
+    <!-- <script>
         jQuery(function($) {
 
             $('#tags input').on('focusout', function() {
@@ -38,8 +169,8 @@
               this.focus();
             }).on('keyup', function(e) {
               // comma|enter (add more keyCodes delimited with | pipe)
-              if (/(188|13)/.test(e.which)) $(this).trigger('focusout')
-              var array = $.makeArray(document.getElementsByTagName("input").value);  
+              if (/(188)/.test(e.which)) $(this).trigger('focusout')
+              // var array = $.makeArray(document.getElementsByTagName("input").value);  
             });
           
             $('#tags').on('click', '.tag', function() {
@@ -47,7 +178,7 @@
             });
           
           });
-    </script>
+    </script> -->
     <!-- Custom Theme JavaScript -->
     <script src="/static/js/custom.min.js"></script>
     <script src="/static/js/dashboard1.js"></script>

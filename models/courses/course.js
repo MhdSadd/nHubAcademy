@@ -11,8 +11,6 @@ const courseSchema = new Schema({
       required: true
   },
   price:{
-    type:Number,
-    required:true
   },
   duration:{
     type:String,
@@ -23,7 +21,6 @@ const courseSchema = new Schema({
   },
   category:{
     type: String,
-    required:true
   },
   dateCreated:{
     type:Date,
@@ -37,4 +34,4 @@ const courseSchema = new Schema({
 
 })
 
-module.exports = {Course: mongoose.model('courses', courseSchema)}
+module.exports = {Course: mongoose.model('Course', courseSchema)}

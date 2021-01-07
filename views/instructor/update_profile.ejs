@@ -39,6 +39,22 @@
         padding: 7px;
         width: auto;
       }
+      .skills-btn-red{
+        background: red !important;
+        color: white; 
+        padding: 8px;
+        border-radius: .7rem;
+        cursor: pointer;
+      }
+      .skills-btn{
+        background: rgb(238, 123, 28); 
+        color: white; 
+        padding: 8px;
+        border-radius: .7rem;
+        cursor: pointer;
+      }
+   
+      
 </style>
 
 <!-- ============================================================== -->
@@ -82,10 +98,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Skills</label>
-                                    <div id="tags" class="col-md-12">
-                                        <input type="text" name="skills" id="tags" placeholder="Add skills seperate with a comma" class="form-control form-control-line"/>
+                                    <label for="skills" class="col-md-12">Skills</label>
+                                    <div class="col-md-12">
+                                        <span class="button button-default skills-btn" onClick="addFeature()">Add skill</span>
+                                        <span class="button button-red skills-btn-red" onClick="removeFeatures()">Remove All </span>
                                     </div>
+                                      <div class="features" style="margin-top: 5rem;"></div>
+                                        <!-- <input type="text" name="skills" id="skills" class="form-control form-control-line"> -->
                                 </div>
                                 <!-- <div class="form-group">
                                     <label for="skills" class="col-md-12">Skills</label>

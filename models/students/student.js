@@ -29,8 +29,7 @@ const studentSchema = new Schema({
     },
     courses:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref:"courses"
-
+        ref:"Course"
     }],
     role: {
         type: String,
@@ -38,4 +37,4 @@ const studentSchema = new Schema({
     }
 })
 
-module.exports = {Student: mongoose.model('students', studentSchema)}
+module.exports = {Student: mongoose.model('Student', studentSchema)}

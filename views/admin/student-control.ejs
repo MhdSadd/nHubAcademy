@@ -1,13 +1,13 @@
 <%- include("../partials/admin/adminHeader") %> 
 
 <style>
-	.student-table{
-		/* border: 2px solid; */
-	}
+.link{
+	color: rgb(238, 120, 10);
+}
 
-	td{
-		/* border: 2px solid red; */
-	}
+.link:hover{
+	color: rgb(243, 186, 79);
+}
 </style>
 
 <!-- ============================================================== -->
@@ -31,7 +31,7 @@
 																				<th>Name</th>
 																				<th>Email</th>
 																				<th>Phone Number</th>
-																				<th>Courses</th>
+																				<th>Current course</th>
 																				<th>Start Date</th>
 																				<th>End Date</th>
 																		</tr>
@@ -39,20 +39,14 @@
 																<tbody>
 																				<%students.forEach(students => {%>
 																		<tr>
-																				<td><%= students.name %> <br> (<%= students.studentID %> )  </td>
+																			<td><a href="/admin/single-student/<%=students._id %>" class="link"> <%= students.name %><br> (<%= students.studentID %> ) </a></td>
 																				<td><%= students.email %> </td>
 																				<td><%= students.phone %> </td>
-																				<%if (students.courses) {%>
-																					<%students.courses.forEach(courses => {%>
-																				<td><%= courses.courseName %></td>
-																				<td><%=courses.duration%> </td>
-																					<%})%>
-																			
-																				<% 	} else { %> 
-																				<% } %> 
+																				
 																		</tr>
-																				<% })%>
-																		
+																	
+																			
+																		<% }) %> 
 																</tbody>
 														</table>
 												</div>
